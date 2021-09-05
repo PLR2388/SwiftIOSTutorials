@@ -13,6 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     var webView: WKWebView!
     var progressView: UIProgressView!
     var websites = ["apple.com","hackingwithswift.com"]
+    var initialURL = ""
     
     override func loadView() {
         webView = WKWebView()
@@ -23,8 +24,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
-        
         
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
@@ -32,29 +31,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
-        
+        let backButton = UIBarButtonItem(barButtonSystemItem: .close, target: webView, action: #selector(webView.goBack))
+        let forwardButton = UIBarButtonItem(barButtonSystemItem: .play, target: webView, action: #selector(webView.goForward))
      
         
-        toolbarItems = [progressButton, spacer, refresh]
+        toolbarItems = [backButton,forwardButton, spacer, progressButton, spacer, refresh]
         navigationController?.isToolbarHidden = false
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
-        let url = URL(string: "https://\(websites[0])")!
+        let url = URL(string: "https://\(initialURL)")!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
-    }
-    
-    @objc func openTapped() {
-        let ac = UIAlertController(title: "Open page...", message: nil, preferredStyle: .actionSheet)
-        
-        for website in websites {
-            ac.addAction(UIAlertAction(title: website, style: .default, handler: openPage))
-        }
-    
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(ac, animated: true)
     }
     
     func openPage(action: UIAlertAction) {
@@ -83,8 +71,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
                     return
                 }
             }
+            let ac = UIAlertController(title: "Wait", message: "This URL was blocked because it's not allowed", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(ac, animated: true)
         }
         
+      
         decisionHandler(.cancel)
     }
 
