@@ -30,20 +30,34 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var country = ""
-        var components = flags[indexPath.row].components(separatedBy: ".")
-        if components.count > 1 { // If there is a file extension
-          components.removeLast()
-          country = components.joined(separator: ".")
-        } else {
-            country =  flags[indexPath.row]
-        }
+        let country = flags[indexPath.row].extractName()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "flag", for: indexPath)
         cell.textLabel?.text = country
+        cell.imageView?.image = UIImage(named: flags[indexPath.row])
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
-
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(identifier: "Details") as? DetailsViewController {
+            vc.imageToLoad = flags[indexPath.row]
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
+extension String {
+    func extractName() -> String {
+        var filename = ""
+        var components = self.components(separatedBy: ".")
+        if components.count > 1 { // If there is a file extension
+          components.removeLast()
+          filename = components.joined(separator: ".")
+        } else {
+            filename =  self
+        }
+        return filename
+    }
+}

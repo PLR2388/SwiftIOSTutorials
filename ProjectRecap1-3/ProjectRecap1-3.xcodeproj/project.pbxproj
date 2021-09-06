@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E5B031A26E5EC0B00EB2CF9 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5B031926E5EC0B00EB2CF9 /* DetailsViewController.swift */; };
 		9E5E2ADD26E4E9AF0079F2F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E2ADC26E4E9AF0079F2F3 /* AppDelegate.swift */; };
 		9E5E2ADF26E4E9AF0079F2F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E2ADE26E4E9AF0079F2F3 /* SceneDelegate.swift */; };
 		9E5E2AE126E4E9AF0079F2F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E2AE026E4E9AF0079F2F3 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E5B031926E5EC0B00EB2CF9 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		9E5E2AD926E4E9AF0079F2F3 /* ProjectRecap1-3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ProjectRecap1-3.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E5E2ADC26E4E9AF0079F2F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E5E2ADE26E4E9AF0079F2F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				9E5E2AE526E4E9B20079F2F3 /* Assets.xcassets */,
 				9E5E2AE726E4E9B20079F2F3 /* LaunchScreen.storyboard */,
 				9E5E2AEA26E4E9B20079F2F3 /* Info.plist */,
+				9E5B031926E5EC0B00EB2CF9 /* DetailsViewController.swift */,
 			);
 			path = "ProjectRecap1-3";
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				9E5E2AE126E4E9AF0079F2F3 /* ViewController.swift in Sources */,
 				9E5E2ADD26E4E9AF0079F2F3 /* AppDelegate.swift in Sources */,
 				9E5E2ADF26E4E9AF0079F2F3 /* SceneDelegate.swift in Sources */,
+				9E5B031A26E5EC0B00EB2CF9 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
