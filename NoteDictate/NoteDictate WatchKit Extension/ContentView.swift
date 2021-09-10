@@ -14,6 +14,7 @@ struct ContentView: View {
     //It should never be share amongs views
     @State private var notes = [Note]()
     @State private var text = ""
+    @AppStorage("lineCount") var lineCount = 1 // For small data
     
     var body: some View {
         VStack {
@@ -28,6 +29,7 @@ struct ContentView: View {
                     notes.append(note)
                     
                     text = ""
+                    save()
                 } label : {
                     Image(systemName: "plus")
                         .padding()
@@ -63,19 +65,57 @@ struct ContentView: View {
                     NavigationLink(
                         destination: DetailView(index: i, note: notes[i], totalNumber: notes.count)) {
                         Text(notes[i].text)
-                            .lineLimit(1)
+                            .lineLimit(lineCount)
                     }
                 }
                 .onDelete(perform: delete)
+                Button("Lines: \(lineCount)") {
+                    lineCount += 1
+                    
+                    if lineCount == 4 {
+                        lineCount = 1
+                    }
+                }
+               
             }
         }
         .navigationTitle("NoteDictate")
+        .onAppear(perform: load)
     }
     
     // IndexSet is a array of number in which number are >=0 and unique
     func delete(offsets: IndexSet) {
         withAnimation {
             notes.remove(atOffsets: offsets)
+            save()
+        }
+    }
+    
+    // Get space allocated for our app
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func save() {
+        do {
+            let data = try JSONEncoder().encode(notes)
+            let url = getDocumentsDirectory().appendingPathComponent("notes")
+            try data.write(to: url)
+        } catch {
+            print("Save failed")
+        }
+    }
+    
+    func load() {
+        DispatchQueue.main.async {
+            do {
+                let url = getDocumentsDirectory().appendingPathComponent("notes")
+                let data = try Data(contentsOf: url)
+                notes = try JSONDecoder().decode([Note].self, from: data)
+            } catch {
+                
+            }
         }
     }
 }
