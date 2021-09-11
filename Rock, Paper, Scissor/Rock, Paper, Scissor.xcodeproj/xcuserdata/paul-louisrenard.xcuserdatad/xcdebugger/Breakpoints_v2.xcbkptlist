@@ -14,8 +14,10 @@
             filePath = "Rock, Paper, Scissor WatchKit Extension/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126">
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "newLevel()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

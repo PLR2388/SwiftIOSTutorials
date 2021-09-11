@@ -17,6 +17,9 @@
      @State private var currentTime = Date()
      @State private var startTime = Date()
      @State private var gameOver = false
+    
+     @State private var isAnswerCorrect = false
+     @State private var shouldDisplayAlert = false
 
      let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
 
@@ -74,6 +77,11 @@
              guard gameOver == false else { return }
              currentTime = newTime
          }
+         .sheet(isPresented: $shouldDisplayAlert) {
+            VStack {
+                isAnswerCorrect ? Text("Correct!") : Text("Incorrect!")
+            }
+         }
      }
 
      func select(move: String) {
@@ -93,6 +101,9 @@
          } else {
              isCorrect = move == answer.lose
          }
+        
+        isAnswerCorrect = isCorrect
+        shouldDisplayAlert = true
 
          if isCorrect {
              level += 1
@@ -102,7 +113,11 @@
                  level = 1
              }
          }
-         newLevel()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            shouldDisplayAlert = false
+            newLevel()
+        }
      }
 
      func newLevel() {
