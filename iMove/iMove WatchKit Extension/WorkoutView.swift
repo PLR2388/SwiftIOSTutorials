@@ -14,6 +14,7 @@ struct WorkoutView: View {
     }
     
     @State private var displayMode = DisplayMode.distance
+    @State private var displayAlert = false
     
     // Use observedObject because WorkoutView DON'T create dataManager
     @ObservedObject var dataManager: DataManager
@@ -53,8 +54,14 @@ struct WorkoutView: View {
                 Button("Stop", action: dataManager.pause)
             } else {
                 Button("Resume", action: dataManager.resume)
-                Button("End", action: dataManager.end)
+                Button("End") {
+                    displayAlert = true
+                }
             }
+        }.alert(isPresented: $displayAlert) {
+            Alert(title: Text("Save"), message: Text("Do you want to save your workout?"), primaryButton: .default(Text("Yes")){
+                dataManager.end()
+            }, secondaryButton: .default(Text("No")))
         }
         
     }

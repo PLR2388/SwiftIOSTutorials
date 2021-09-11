@@ -17,6 +17,9 @@ struct ContentView: View {
         ("Wheelchair", .wheelchairRunPace)
     ]
     
+    let selectedColor = Color(red: 0, green: 0.55, blue: 0.23)
+    let deselectedColor = Color.black
+    
     @State private var selectedActivity = 0
     
     // StateObject must be used by struct CREATING the dataManager
@@ -26,9 +29,13 @@ struct ContentView: View {
     var body: some View {
         if dataManager.state == .inactive {
             VStack {
-                Picker("Choose an activity", selection: $selectedActivity) {
-                    ForEach(0..<activities.count) { index in
-                        Text(activities[index].name)
+                Text("Choose an activity")
+                List {
+                    ForEach(0..<activities.count, id: \.self) { index in
+                        Button(activities[index].name) {
+                            selectedActivity = index
+                        }
+                        .listItemTint(index == selectedActivity ? selectedColor : deselectedColor)
                     }
                 }
                 
