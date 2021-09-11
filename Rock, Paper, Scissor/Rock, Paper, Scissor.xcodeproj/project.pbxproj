@@ -11,12 +11,12 @@
 		9E00FDE326EB3DD200E8E102 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E00FDE226EB3DD200E8E102 /* Assets.xcassets */; };
 		9E00FDEA26EB3DD200E8E102 /* Rock, Paper, Scissor WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9E00FDE926EB3DD200E8E102 /* Rock, Paper, Scissor WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9E00FDEF26EB3DD200E8E102 /* Rock__Paper__ScissorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00FDEE26EB3DD200E8E102 /* Rock__Paper__ScissorApp.swift */; };
-		9E00FDF126EB3DD200E8E102 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00FDF026EB3DD200E8E102 /* ContentView.swift */; };
 		9E00FDF326EB3DD200E8E102 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00FDF226EB3DD200E8E102 /* NotificationController.swift */; };
 		9E00FDF526EB3DD200E8E102 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00FDF426EB3DD200E8E102 /* NotificationView.swift */; };
 		9E00FDF726EB3DD200E8E102 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00FDF626EB3DD200E8E102 /* ComplicationController.swift */; };
 		9E00FDF926EB3DD300E8E102 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E00FDF826EB3DD300E8E102 /* Assets.xcassets */; };
 		9E00FDFC26EB3DD300E8E102 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E00FDFB26EB3DD300E8E102 /* Preview Assets.xcassets */; };
+		9EF51BC526EC93B6007B9D6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF51BC426EC93B6007B9D6A /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,6 @@
 		9E00FDE426EB3DD200E8E102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E00FDE926EB3DD200E8E102 /* Rock, Paper, Scissor WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rock, Paper, Scissor WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E00FDEE26EB3DD200E8E102 /* Rock__Paper__ScissorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock__Paper__ScissorApp.swift; sourceTree = "<group>"; };
-		9E00FDF026EB3DD200E8E102 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9E00FDF226EB3DD200E8E102 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		9E00FDF426EB3DD200E8E102 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		9E00FDF626EB3DD200E8E102 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		9E00FDFB26EB3DD300E8E102 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9E00FDFD26EB3DD300E8E102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E00FDFE26EB3DD300E8E102 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		9EF51BC426EC93B6007B9D6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				9E00FDEE26EB3DD200E8E102 /* Rock__Paper__ScissorApp.swift */,
-				9E00FDF026EB3DD200E8E102 /* ContentView.swift */,
 				9E00FDF226EB3DD200E8E102 /* NotificationController.swift */,
 				9E00FDF426EB3DD200E8E102 /* NotificationView.swift */,
 				9E00FDF626EB3DD200E8E102 /* ComplicationController.swift */,
@@ -129,6 +128,7 @@
 				9E00FDFD26EB3DD300E8E102 /* Info.plist */,
 				9E00FDFE26EB3DD300E8E102 /* PushNotificationPayload.apns */,
 				9E00FDFA26EB3DD300E8E102 /* Preview Content */,
+				9EF51BC426EC93B6007B9D6A /* ContentView.swift */,
 			);
 			path = "Rock, Paper, Scissor WatchKit Extension";
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E00FDF326EB3DD200E8E102 /* NotificationController.swift in Sources */,
-				9E00FDF126EB3DD200E8E102 /* ContentView.swift in Sources */,
+				9EF51BC526EC93B6007B9D6A /* ContentView.swift in Sources */,
 				9E00FDF726EB3DD200E8E102 /* ComplicationController.swift in Sources */,
 				9E00FDEF26EB3DD200E8E102 /* Rock__Paper__ScissorApp.swift in Sources */,
 				9E00FDF526EB3DD200E8E102 /* NotificationView.swift in Sources */,
