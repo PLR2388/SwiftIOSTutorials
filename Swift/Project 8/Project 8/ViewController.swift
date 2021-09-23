@@ -147,7 +147,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadLevel()
+        performSelector(inBackground: #selector(loadLevel), with: nil)
     }
     
     @objc func letterTapped(_ sender: UIButton) {
@@ -209,7 +209,7 @@ class ViewController: UIViewController {
         activatedButtons.removeAll()
     }
     
-    func loadLevel() {
+    @objc func loadLevel() {
         var clueString = ""
         var solutionString = ""
         var letterBits = [String]()
@@ -235,8 +235,19 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
         // Now configure the buttons and labels
         
+        
+        performSelector(onMainThread: #selector(updateUILoadLevel), with: [clueString, solutionString, letterBits], waitUntilDone: false)
+      
+
+    }
+    
+    @objc func updateUILoadLevel(array: [Any]) {
+        let clueString = array[0] as! String
+        let solutionString = array[1] as! String
+        var letterBits = array[2] as! [String]
         cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
         answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -247,7 +258,6 @@ class ViewController: UIViewController {
                 letterButtons[i].setTitle(letterBits[i], for: .normal)
             }
         }
-
     }
 
 

@@ -73,13 +73,19 @@ class ViewController: UITableViewController {
     }
     
     func submit(_ filter: String) {
-        filteredPetitions.removeAll()
-        for petition in petitions {
-            if petition.title.contains(filter) || petition.body.contains(filter) {
-                filteredPetitions.append(petition)
+        DispatchQueue.main.async {
+            self.filteredPetitions.removeAll()
+            DispatchQueue.global(qos: .userInitiated).async {
+                for petition in self.petitions {
+                    if petition.title.contains(filter) || petition.body.contains(filter) {
+                        self.filteredPetitions.append(petition)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
-        tableView.reloadData()
     }
     
     func showError() {
