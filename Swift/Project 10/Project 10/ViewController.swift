@@ -22,6 +22,11 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.sourceType = .camera
+        }
+        
         present(picker,animated: true)
     }
     
@@ -79,8 +84,6 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let person = people[indexPath.row]
         
-        let ac1 = UIAlertController(title: "Option", message: "", preferredStyle: <#T##UIAlertController.Style#>)
-        
         let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
         ac.addTextField()
         
@@ -93,7 +96,26 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
             self?.collectionView.reloadData()
         })
         
-        present(ac,animated: true)
+        let ac2 = UIAlertController(title: "Really?", message: "Would you like to delete a person?", preferredStyle: .alert)
+        ac2.addAction(UIAlertAction(title: "Yes", style: .default) { [weak self] _ in
+            self?.people.remove(at: (self?.people.firstIndex(of: person)!)!)
+            self?.collectionView.reloadData()
+        })
+        ac2.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        let ac1 = UIAlertController(title: "Option", message: nil, preferredStyle: .alert)
+        ac1.addAction(UIAlertAction(title: "Rename Person", style: .default) { [weak self, ac] _ in
+            self?.present(ac, animated: true)
+        })
+        ac1.addAction(UIAlertAction(title: "Delete Person", style: .default) {[weak self, ac2] _ in
+            self?.present(ac2, animated: true)
+        })
+        ac1.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+     
+
+        
+        present(ac1,animated: true)
     }
 }
 
