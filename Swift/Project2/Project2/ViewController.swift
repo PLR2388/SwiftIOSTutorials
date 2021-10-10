@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     var countries = [String]()
     var score = 0
+    var highestScore = -10
     var correctAnswer = 0
     var numberQuestionAnswered = 0
     
@@ -30,6 +31,10 @@ class ViewController: UIViewController {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
+        
+        let defaults = UserDefaults.standard
+        
+        highestScore = defaults.integer(forKey: "highestScore")
         
         askQuestion(action: nil)
     }
@@ -64,8 +69,18 @@ class ViewController: UIViewController {
         var message = "Your score is \(score)"
         
         if numberQuestionAnswered == 10 {
-            title = "Game over"
-            message = "Your final score is \(score)"
+            if score > highestScore {
+                highestScore = score
+                let defaults = UserDefaults.standard
+                defaults.set(highestScore,forKey: "highestScore")
+                title = "Congrats"
+                message = "You beat the highest score. Your score : \(score)"
+            } else {
+                title = "Game over"
+                message = "Your final score is \(score)"
+            }
+            
+    
         }
         
         let ac = UIAlertController(title: title, message: message , preferredStyle: .alert)
