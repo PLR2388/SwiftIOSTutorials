@@ -10,7 +10,12 @@ import UIKit
 class ViewController: UITableViewController {
     
     var allWords = [String]()
-    var usedWords = [String]()
+    var usedWords = [String]() {
+        didSet {
+            let defaults = UserDefaults.standard
+            defaults.set(usedWords, forKey: "words")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +33,28 @@ class ViewController: UITableViewController {
             allWords = ["silkworm"]
         }
         
-        startGame()
+        let defaults = UserDefaults.standard
+        let title = defaults.string(forKey: "word")
+        if let title = title {
+            self.title = title
+            if let words = defaults.object(forKey: "words") as? [String] {
+                self.usedWords = words
+                tableView.reloadData()
+            }
+            
+            
+        } else {
+            startGame()
+        }
+       
     }
     
     @objc func startGame() {
         title = allWords.randomElement()
+        let defaults = UserDefaults.standard
+        defaults.set(title, forKey: "word")
         usedWords.removeAll(keepingCapacity: true)
+        defaults.set(usedWords, forKey: "words")
         tableView.reloadData()
     }
     
@@ -70,9 +91,10 @@ class ViewController: UITableViewController {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
                     usedWords.insert(answer, at: 0)
-                    
+                    let defaults = UserDefaults.standard
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
+                    defaults.set(usedWords, forKey: "words")
                     return
                 } else {
                     showErrorMessage(title:"Word not recognised" , message: "You can't just make them up, you know!")
