@@ -30,6 +30,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
         changeFilterButton.setTitle("CISepiaTone", for: .normal)
+        imageView.alpha = 0
     }
     
     @objc func importPicture() {
@@ -92,6 +93,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {return}
+
+        UIView.animate(withDuration: 1, delay: 0, options: []) {
+            self.imageView.alpha = 1
+        }
+
+        
+        
+        
         dismiss(animated: true)
         currentImage = image
         
