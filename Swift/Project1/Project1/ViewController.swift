@@ -47,6 +47,10 @@ class ViewController: UITableViewController {
                 } catch {
                     print("Failed to load numberShown")
                 }
+            } else {
+                for _ in 0..<self.pictures.count {
+                    self.numberShown.append(0)
+                }
             }
             
             DispatchQueue.main.async {

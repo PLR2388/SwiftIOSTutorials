@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
-   uuid = "06326ACC-7B7D-43E6-9630-2BEDEAC8E308"
+   uuid = "1F6267D3-746E-4E2A-966B-F87302D25992"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E463C12A-CD27-4DE8-9B43-0908DDF79D7C"
-            shouldBeEnabled = "No"
+            uuid = "6E2951BF-B8A5-49B9-8371-8180E8C4E0F7"
+            shouldBeEnabled = "Yes"
+            condition = "i % 10 == 0"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Project1/ViewController.swift"
+            filePath = "Project 18/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,7 +24,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            uuid = "A1D38B1C-966D-4B99-B9C0-A6A001AC6EC7"
+            uuid = "53448B57-9B62-4CE6-A3F5-1A862289677C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
