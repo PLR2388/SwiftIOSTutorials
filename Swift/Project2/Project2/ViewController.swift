@@ -48,6 +48,9 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
         title = "\(countries[correctAnswer].uppercased()) score: \(score)"
+        button1.transform = .identity
+        button2.transform = .identity
+        button3.transform = .identity
     }
 
 
@@ -55,6 +58,11 @@ class ViewController: UIViewController {
         var title: String
        
         numberQuestionAnswered += 1
+        
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: []) {
+            sender.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }
+
         
       
         
