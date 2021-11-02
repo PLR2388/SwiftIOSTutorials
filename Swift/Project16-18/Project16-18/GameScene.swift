@@ -57,15 +57,9 @@ class GameScene: SKScene {
         reloadButton.position = CGPoint(x: 512, y: 16)
         reloadButton.text = "RELOAD"
         reloadButton.name = "reload"
-        reloadButton.target(forAction: #selector(reloadBullet), withSender: nil)
-        
         addChild(reloadButton)
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(dealWithTimer), userInfo: nil, repeats: true)
-    }
-    
-    @objc func reloadBullet() {
-        remainedBullets = 6
     }
     
     @objc func dealWithTimer() {
@@ -121,8 +115,10 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let position = touch.location(in: self)
-        guard remainedBullets > 0 else { return }
-        remainedBullets -= 1
+        if remainedBullets > 0 {
+            remainedBullets -= 1
+        }
+
         
         let nodes = nodes(at: position)
         
@@ -131,6 +127,7 @@ class GameScene: SKScene {
                 remainedBullets = 6
                 return
             }
+            guard remainedBullets > 0 else {continue}
             guard let target = node as? Target else { continue }
                 if target.name == "good" {
                     score += target.score
