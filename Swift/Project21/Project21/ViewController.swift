@@ -69,7 +69,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         
         if let customData = userInfo["customData"] as? String {
             print("Custom data received: \(customData)")
-            let msg: String
+            var msg: String = ""
             switch response.actionIdentifier {
             case UNNotificationDefaultActionIdentifier:
                 // user swiped to unlock

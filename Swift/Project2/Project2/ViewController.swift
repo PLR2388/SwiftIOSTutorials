@@ -5,6 +5,7 @@
 //  Created by Paul-Louis Renard on 04/09/2021.
 //
 
+import UserNotifications
 import UIKit
 
 class ViewController: UIViewController {
@@ -18,8 +19,40 @@ class ViewController: UIViewController {
     var correctAnswer = 0
     var numberQuestionAnswered = 0
     
+    func registerLocal() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .badge,.sound]) { granted, error in
+            if granted {
+                print("Yay!")
+            } else {
+                print("D'oh!")
+            }
+        }
+    }
+    
+    func scheduleLocal(){
+        
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Play"
+        content.body = "Come and Play!"
+        content.sound = .default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 86400, repeats: true)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerLocal()
+        scheduleLocal()
+        
+        
         countries += ["Estonia", "France", "Germany", "Ireland", "Italy", "Monaco", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"]
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(showScore))
