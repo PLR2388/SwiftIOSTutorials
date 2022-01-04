@@ -129,3 +129,45 @@ class Lion: Cat {
         print("Lion miaou")
     }
 }
+
+protocol Building {
+    var rooms: Int { get }
+    var cost: Int { get }
+    var estateAgent: String { get }
+    
+    func summary()
+}
+
+extension Building {
+    func summary() {
+        print("\(rooms) rooms at the cost of $\(cost), please contact \(estateAgent)")
+    }
+}
+
+struct House: Building {
+    var rooms: Int
+    
+    var cost: Int
+    
+    var estateAgent: String
+    
+    func summary() {
+        print("House with \(rooms) rooms at the cost of $\(cost), please contact \(estateAgent)")
+    }
+}
+
+struct Office: Building {
+    var rooms: Int
+    
+    var cost: Int
+    
+    var estateAgent: String
+    
+    func summary() {
+        print("Office with \(rooms) rooms at the cost of $\(cost), please contact \(estateAgent)")
+    }
+}
+
+func randomArray(array: [Int]?) -> Int {
+    array?.randomElement() ?? Int.random(in: 1...100)
+}
