@@ -18,6 +18,8 @@ struct ContentView: View {
     @State private var score = 0
     @State private var numberOfQuestion = 0
     
+    
+    
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -46,6 +48,7 @@ struct ContentView: View {
                         } label: {
                             FlagImage(flagName: countries[number])
                         }
+                        .animation(.default, value: <#T##Equatable#>)
                         
                     }
                 }
@@ -82,6 +85,7 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
+        
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
