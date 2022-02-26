@@ -18,7 +18,8 @@ struct ContentView: View {
     @State private var score = 0
     @State private var numberOfQuestion = 0
     
-    
+    @State private var numberFlagTapped = 0
+    @State private var isAnimated = false
     
     var body: some View {
         ZStack {
@@ -47,9 +48,10 @@ struct ContentView: View {
                             flagTapped(number)
                         } label: {
                             FlagImage(flagName: countries[number])
+                                .rotation3DEffect(.degrees(isAnimated && numberFlagTapped == number ? 360 : 0), axis: (x: 0, y: 1, z: 0))
+                                .opacity(isAnimated && numberFlagTapped != number ? 0.25 : 1)
+                                .scaleEffect(isAnimated && numberFlagTapped != number ? 0.01: 1)
                         }
-                        .animation(.default, value: <#T##Equatable#>)
-                        
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -85,7 +87,10 @@ struct ContentView: View {
     }
     
     func flagTapped(_ number: Int) {
-        
+        withAnimation {
+            numberFlagTapped = number
+            isAnimated = true
+        }
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
@@ -100,6 +105,7 @@ struct ContentView: View {
     }
     
     func restart() {
+        isAnimated = false
         score = 0
         numberOfQuestion = 0
         countries.shuffle()
@@ -107,6 +113,7 @@ struct ContentView: View {
     }
     
     func askQuestion() {
+        isAnimated = false
         numberOfQuestion += 1
         if numberOfQuestion == 8 {
             showingGameOver = true
