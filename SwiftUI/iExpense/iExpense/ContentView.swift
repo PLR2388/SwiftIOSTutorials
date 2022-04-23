@@ -17,28 +17,57 @@ struct ContentView: View {
                 let personal = expenses.items.filter {
                     $0.type == "Personal"
                 }
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name).font(.headline)
-                            Text(item.type)
-                        }
-                        
-                        Spacer()
-                        
-                        if item.amount < 10 {
-                            Text(item.amount, format: .currency(code: "USD"))
-                        } else if item.amount < 100 {
-                            Text(item.amount, format: .currency(code: "USD"))
-                                .font(.title2)
-                        } else {
-                            Text(item.amount, format: .currency(code: "USD"))
-                                .font(.headline)
-                        }
-                     
-                    }
+                let business = expenses.items.filter {
+                    $0.type == "Business"
                 }
-                .onDelete(perform: removeItems)
+                Section {
+                    ForEach(personal) { item in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name).font(.headline)
+                                Text(item.type)
+                            }
+                            
+                            Spacer()
+                            
+                            if item.amount < 10 {
+                                Text(item.amount, format: .currency(code: "USD"))
+                            } else if item.amount < 100 {
+                                Text(item.amount, format: .currency(code: "USD"))
+                                    .font(.title2)
+                            } else {
+                                Text(item.amount, format: .currency(code: "USD"))
+                                    .font(.headline)
+                            }
+                         
+                        }
+                    }
+                    .onDelete(perform: removePersonalItems)
+                }
+                Section {
+                    ForEach(business) { item in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name).font(.headline)
+                                Text(item.type)
+                            }
+                            
+                            Spacer()
+                            
+                            if item.amount < 10 {
+                                Text(item.amount, format: .currency(code: "USD"))
+                            } else if item.amount < 100 {
+                                Text(item.amount, format: .currency(code: "USD"))
+                                    .font(.title2)
+                            } else {
+                                Text(item.amount, format: .currency(code: "USD"))
+                                    .font(.headline)
+                            }
+                         
+                        }
+                    }
+                    .onDelete(perform: removeBusinessItems)
+                }
             }
             .navigationTitle("iExpense")
             .toolbar {
@@ -54,8 +83,20 @@ struct ContentView: View {
         }
     }
     
-    func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+    func removeBusinessItems(at offsets: IndexSet) {
+        let business = expenses.items.filter {
+            $0.type == "Business"
+        }
+        let idsToDelete = offsets.map { business[$0].id }
+        expenses.items.removeAll { idsToDelete.contains($0.id)}
+    }
+    
+    func removePersonalItems(at offsets: IndexSet) {
+        let personal = expenses.items.filter {
+            $0.type == "Personal"
+        }
+        let idsToDelete = offsets.map { personal[$0].id }
+        expenses.items.removeAll { idsToDelete.contains($0.id)}
     }
 }
 
