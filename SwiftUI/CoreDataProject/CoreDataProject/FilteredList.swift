@@ -5,22 +5,32 @@
 //  Created by Paul-Louis Renard on 01/08/2022.
 //
 
+import CoreData
 import SwiftUI
 
-struct FilteredList: View {
-    @FetchRequest var fetchRequest: FetchedResults<Singer>
-    
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-    
-    init(filter: String) {
-        _fetchRequest = FetchRequest<Singer>(sortDescriptors: [], predicate: <#T##NSPredicate?#>)
-    }
+enum Predicate {
+    case beginsWith
 }
 
-struct FilteredList_Previews: PreviewProvider {
-    static var previews: some View {
-        FilteredList()
+struct FilteredList<T: NSManagedObject, Content: View>: View {
+    @FetchRequest var fetchRequest: FetchedResults<T>
+    let content: (T) -> Content
+    
+    var body: some View {
+        List(fetchRequest, id: \.self) { item in
+            content(item)
+        }
+    }
+    
+    init(filterKey: String, filterValue: String, predicate: Predicate, sortDescriptors: [SortDescriptor<T>], @ViewBuilder content: @escaping (T) -> Content) {
+        let predicated: String
+        
+        switch predicate {
+        case .beginsWith:
+            predicated = "BEGINSWITH"
+        }
+        
+        _fetchRequest = FetchRequest<T>(sortDescriptors: sortDescriptors, predicate: NSPredicate(format: "%K \(predicated) %@", filterKey, filterValue))
+        self.content = content
     }
 }
