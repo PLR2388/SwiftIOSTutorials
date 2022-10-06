@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var moc
+    
     @State var users: [User] = [User]()
+    
+    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<CachedUser>
+    @FetchRequest(sortDescriptors: []) var cachedFriends: FetchedResults<CachedFriend>
+    
     var body: some View {
         NavigationView {
             List(users, id: \.self) { user in
@@ -18,6 +24,9 @@ struct ContentView: View {
             }
         }
         .task {
+            if !cachedUsers.isEmpty {
+                
+            }
             if users.isEmpty {
                 await loadData()
             }
