@@ -20,8 +20,10 @@ struct CheckoutView: View {
                     image
                         .resizable()
                         .scaledToFit()
+                        .accessibilityElement(children: .ignore)
                 } placeholder: {
                     ProgressView()
+                        .accessibilityElement(children: .ignore)
                 }
                 .frame(height: 233)
                 

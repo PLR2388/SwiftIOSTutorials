@@ -35,6 +35,7 @@ struct ContentView: View {
                 } label: {
                     Text("Grid")
                 }
+                .accessibilityElement()
 
             }
         }
