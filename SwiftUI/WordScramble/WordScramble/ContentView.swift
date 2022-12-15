@@ -32,6 +32,9 @@ struct ContentView: View {
                             Image(systemName: "\(word.count).circle")
                             Text(word)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel(word)
+                        .accessibilityHint("\(word.count) letters")
                     }
                 }
             }
@@ -98,6 +101,7 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordURL) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                usedWords = []
                 return
             }
         }
