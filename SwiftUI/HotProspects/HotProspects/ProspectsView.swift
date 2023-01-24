@@ -23,8 +23,15 @@ struct ProspectsView: View {
             List{
                 ForEach(filteredProspects) { prospect in
                     VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
+                        HStack {
+                            if prospect.isContacted && filter == .none {
+                                Image(systemName: "person.fill.checkmark")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                            }
+                            Text(prospect.name)
+                                .font(.headline)
+                        }
                         Text(prospect.emailAddress)
                             .foregroundColor(.secondary)
                     }

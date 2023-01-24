@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A3E00A029805FC700BB5298 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E009F29805FC700BB5298 /* FileManager.swift */; };
 		2A4FA25C297C542600E85CAC /* SamplePackage in Frameworks */ = {isa = PBXBuildFile; productRef = 2A4FA25B297C542600E85CAC /* SamplePackage */; };
 		2A5458812969BE6E00B09DA8 /* HotProspectsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5458802969BE6E00B09DA8 /* HotProspectsApp.swift */; };
 		2A5458832969BE6E00B09DA8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5458822969BE6E00B09DA8 /* ContentView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A3E009F29805FC700BB5298 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		2A54587D2969BE6E00B09DA8 /* HotProspects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotProspects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A5458802969BE6E00B09DA8 /* HotProspectsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotProspectsApp.swift; sourceTree = "<group>"; };
 		2A5458822969BE6E00B09DA8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				2A5458842969BE6F00B09DA8 /* Assets.xcassets */,
 				2A5458862969BE6F00B09DA8 /* HotProspects.entitlements */,
 				2A5458872969BE6F00B09DA8 /* Preview Content */,
+				2A3E009F29805FC700BB5298 /* FileManager.swift */,
 			);
 			path = HotProspects;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				2A80F48D297E395D00BAF92A /* MeView.swift in Sources */,
 				2AF9DBE2298049D100BF91AD /* ImageSaver.swift in Sources */,
 				2A80F48F297E3C2D00BAF92A /* Prospect.swift in Sources */,
+				2A3E00A029805FC700BB5298 /* FileManager.swift in Sources */,
 				2A5458832969BE6E00B09DA8 /* ContentView.swift in Sources */,
 				2A80F48B297E395700BAF92A /* ProspectsView.swift in Sources */,
 				2A5458812969BE6E00B09DA8 /* HotProspectsApp.swift in Sources */,
