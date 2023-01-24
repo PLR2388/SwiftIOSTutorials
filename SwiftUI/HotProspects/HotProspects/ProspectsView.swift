@@ -16,6 +16,7 @@ struct ProspectsView: View {
     
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    @State private var isShowingSortDialog = false
     let filter: FilterType
     
     var body: some View {
@@ -68,9 +69,27 @@ struct ProspectsView: View {
                 } label: {
                     Label("Scan", systemImage: "qrcode.viewfinder")
                 }
+                Button {
+                    isShowingSortDialog = true
+                } label: {
+                    Label("Sort", systemImage: "list.number")
+                }
             }
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+            }
+            .confirmationDialog("Sort", isPresented: $isShowingSortDialog) {
+                Button {
+                    prospects.sort(by: .name)
+                } label: {
+                    Text("By name")
+                }
+                
+                Button {
+                    prospects.sort(by: .date)
+                } label: {
+                    Text("By date")
+                }
             }
         }
     }

@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+enum Sort {
+    case none, date, name
+}
+
 class Prospect: Identifiable, Codable {
     var id = UUID()
+    var creationDate = Date()
     var name = "Anonymous"
     var emailAddress = ""
     fileprivate(set) var isContacted = false
@@ -40,6 +45,20 @@ class Prospect: Identifiable, Codable {
     func add(_ prospect: Prospect) {
         people.append(prospect)
         save()
+    }
+    
+    func sort(by sort: Sort) {
+        objectWillChange.send()
+        people.sort { a, b in
+            switch sort {
+            case .none:
+                return a.id < b.id
+            case .name:
+                return a.name < b.name
+            case .date:
+                return a.creationDate < b.creationDate
+            }
+        }
     }
     
     func toggle(_ propect: Prospect) {
